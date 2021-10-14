@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GraphList from './Components/GraphList';
 import Difference from "./Components/Difference";
+import Header from "./Components/Header"
 import './App.css';
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
 
   return (
     <div className="App">
+      <Header title = {testVolume != null && testVolume.title}/>
       <div className="diffs">
         <Difference diff = {firstDiff} />
         <Difference diff = {secondDiff} />
