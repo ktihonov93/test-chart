@@ -2,9 +2,7 @@ import Graph from './Graph';
 import "./GraphList.css";
 import Normativ from './Normativ'
 
-function GraphList({ testVolume, maxSum, firstDiff, secondDiff }){    
-
-  //{maxSum !== null && console.log(maxSum)}
+function GraphList({ testVolume, maxSum }){
 
     return (
         <div className="graphList">

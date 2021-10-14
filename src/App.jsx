@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GraphList from './Components/GraphList';
+import Difference from "./Components/Difference";
 import './App.css';
 
 function App() {
@@ -20,11 +21,11 @@ function App() {
 
     let testSum = Object.keys(resTestVolume.data.test).reduce((prev, key) => (prev + resTestVolume.data.test[key]), 0);
 
-    setFirstDiff(devSum - testSum)
+    setFirstDiff(testSum - devSum)
 
     let prodSum = Object.keys(resTestVolume.data.prod).reduce((prev, key) => (prev + resTestVolume.data.prod[key]), 0);
 
-    setSecondDiff(testSum - prodSum)
+    setSecondDiff(prodSum - testSum)
     
     setMaxSum(Math.max(devSum, testSum, prodSum, resTestVolume.data.norm));
 
@@ -38,7 +39,12 @@ function App() {
 
   return (
     <div className="App">
-          <GraphList testVolume = {testVolume} maxSum = {maxSum} firstDiff = {firstDiff} secondDiff = {secondDiff} />
+      <div className="diffs">
+        <Difference diff = {firstDiff} />
+        <Difference diff = {secondDiff} />
+      </div>
+     
+      <GraphList testVolume = {testVolume} maxSum = {maxSum} />
     </div>
   );
 }
