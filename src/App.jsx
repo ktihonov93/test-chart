@@ -6,46 +6,39 @@ import './App.css';
 function App() {
 
   const [testVolume, setTestVolume] = useState(null);
-  const [devSum, setDevSum] = useState(null);
-  const [testSum, setTestSum] = useState(null);
-  const [prodSum, setProdSum] = useState(null);
+  const [firstDiff, setFirstDiff] = useState(null);
+  const [secondDiff, setSecondDiff] = useState(null);  
   const [maxSum, setMaxSum] = useState(null);
 
-  useEffect(() => {
-    axios
-      .get("https://rcslabs.ru/ttrp1.json")
-      // Extract the DATA from the received response
-      .then((res) => {
-        setTestVolume(res.data);
-      })
-      .catch((err) => {
-        alert(err);
-      });
-  }, []);  
+  const getTestVolume = async () => {
 
-  useEffect(() => {
-    testVolume &&
-      setDevSum(Object.keys(testVolume.dev).reduce((prev, key) => (prev + testVolume.dev[key]), 0)) &&
+    let resTestVolume = await axios.get("https://rcslabs.ru/ttrp1.json");
 
-      setTestSum(Object.keys(testVolume.test).reduce((prev, key) => (prev + testVolume.test[key]), 0)) &&
+    setTestVolume(resTestVolume.data);
 
-      setProdSum(Object.keys(testVolume.prod).reduce((prev, key) => (prev + testVolume.prod[key]), 0))
+    let devSum = Object.keys(resTestVolume.data.dev).reduce((prev, key) => (prev + resTestVolume.data.dev[key]), 0);    
 
+    let testSum = Object.keys(resTestVolume.data.test).reduce((prev, key) => (prev + resTestVolume.data.test[key]), 0);
 
-  }, [testVolume]);
+    setFirstDiff(devSum - testSum)
 
-  useEffect(() => {
-    devSum && testSum && prodSum && 
-      
-    setMaxSum(Math.max(devSum, testSum, prodSum, testVolume.norm));
+    let prodSum = Object.keys(resTestVolume.data.prod).reduce((prev, key) => (prev + resTestVolume.data.prod[key]), 0);
+
+    setSecondDiff(testSum - prodSum)
     
-  }, [devSum, testSum, prodSum, testVolume]);
+    setMaxSum(Math.max(devSum, testSum, prodSum, resTestVolume.data.norm));
 
-  maxSum != null && alert(maxSum)
+  }
+
+  useEffect(() => {    
+      
+    getTestVolume();
+
+  }, []);
 
   return (
     <div className="App">
-          <GraphList testVolume = {testVolume} maxSum = {maxSum}/>
+          <GraphList testVolume = {testVolume} maxSum = {maxSum} firstDiff = {firstDiff} secondDiff = {secondDiff} />
     </div>
   );
 }

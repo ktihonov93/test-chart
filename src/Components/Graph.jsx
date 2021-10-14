@@ -3,7 +3,7 @@ import "./Graph.css";
 
 function Graph({ column, name, maxSum }){
 
-    console.log(maxSum)
+   // {maxSum != null && console.log(maxSum)}
 
     return (
         <div className="graph">
