@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import GraphList from './Components/GraphList';
 import Difference from "./Components/Difference";
-import Header from "./Components/Header"
-import Footer from "./Components/Footer"
+import Header from "./Components/Header";
+import Footer from "./Components/Footer";
+import LoadingSpinner from "./Components/LoadingSpinner";
 import './App.css';
 
 function App() {
@@ -12,10 +13,22 @@ function App() {
   const [firstDiff, setFirstDiff] = useState(null);
   const [secondDiff, setSecondDiff] = useState(null);  
   const [maxSum, setMaxSum] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [number, setNumber] = useState(1);
 
   const getTestVolume = async () => {
 
-    let resTestVolume = await axios.get("https://rcslabs.ru/ttrp1.json");
+    let nextStep
+
+    if(number >= 1 && number < 5){
+      nextStep = number + 1;
+    }else if(number === 5){
+      nextStep = 1;
+    }     
+    
+    setNumber(nextStep);
+
+    let resTestVolume = await axios.get(`https://rcslabs.ru/ttrp${number}.json`);
 
     setTestVolume(resTestVolume.data);
 
@@ -31,6 +44,8 @@ function App() {
     
     setMaxSum(Math.max(devSum, testSum, prodSum, resTestVolume.data.norm));
 
+    setLoading(false);
+
   }
 
   useEffect(() => {    
@@ -40,7 +55,12 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+
+    <div className="loading">
+      
+      { !loading ? (
+
+      <div className="App">
 
       <Header title = {testVolume != null && testVolume.title}/>
 
@@ -57,7 +77,19 @@ function App() {
           <Footer line = "База данных" color="#e85498" />
       </div>
 
+
+      <div className="button-line">
+        <button className="button" onClick={getTestVolume}>Next</button>
+      </div>
+      
+
     </div>
+    ) : (
+      <LoadingSpinner />
+    )}
+    </div>
+
+    
   );
 }
 

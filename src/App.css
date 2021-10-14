@@ -6,3 +6,21 @@
     margin-top: 40px;
     display: flex;
 }
+
+.loading{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button{
+    margin-top: 60px;
+    padding: 15px;    
+   background-color: greenyellow;
+   border-radius: 7px;
+}
+
+.button-line{
+    display: flex;
+    justify-content: center;
+}
