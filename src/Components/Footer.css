@@ -1,0 +1,12 @@
+.Footer{
+    display: flex;
+    margin-left: 30px;;
+    align-items: center;
+}
+
+.color{
+    height: 20px;
+    width: 20px;
+    margin-right: 10px;
+    border-radius: 5px;
+}

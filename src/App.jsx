@@ -3,6 +3,7 @@ import axios from "axios";
 import GraphList from './Components/GraphList';
 import Difference from "./Components/Difference";
 import Header from "./Components/Header"
+import Footer from "./Components/Footer"
 import './App.css';
 
 function App() {
@@ -40,13 +41,22 @@ function App() {
 
   return (
     <div className="App">
+
       <Header title = {testVolume != null && testVolume.title}/>
+
       <div className="diffs">
         <Difference diff = {firstDiff} />
-        <Difference diff = {secondDiff} />
+        <Difference diff = {secondDiff} />        
       </div>
      
       <GraphList testVolume = {testVolume} maxSum = {maxSum} />
+
+      <div className="footers">
+          <Footer line = "Клиентская часть" color="#4ab6e8" />
+          <Footer line = "Серверная часть" color="#aa6fac" />
+          <Footer line = "База данных" color="#e85498" />
+      </div>
+
     </div>
   );
 }
