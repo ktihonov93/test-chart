@@ -1,0 +1,39 @@
+.graph{
+    width: 100px;
+    margin: 0 35px 0 35px;
+}
+
+#front{
+    background-color: #4ab6e8;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 0 0;
+}
+
+#back{
+    background-color: #aa6fac;
+    height: 100px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#db{
+    background-color: #e85498;
+    height: 100px;
+    color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 0 15px 15px;
+}
+
+.graphName{
+    text-align: center;
+    margin-top: 25px;    
+}

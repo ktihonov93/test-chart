@@ -1,0 +1,13 @@
+.Normativ{
+    width: 100px;
+    margin: 0 35px 0 35px;
+}
+
+#norm{
+    background-image: linear-gradient(30deg,#4ab6e8,#aa6fac);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px 15px 15px 15px;
+}
