@@ -1,5 +1,40 @@
 .Difference{
-    margin: 0 0 30px 130px;
+    display: flex;
+    margin: 0 45px 0 0px;
+}
+
+.diff{
+    height: 20px;
     padding: 7px;
     border-radius: 12px;
+}
+
+.vector11{
+    margin-top: 16px;
+    width: 30px;
+    height: 2px;
+    background-color: grey;
+}
+
+.vector12{
+    margin-top: 16px;
+    display: block;
+    content: "";
+    width: 2px;
+    background-color: grey;
+}
+
+.vector21{
+    margin-top: 16px;
+    width: 30px;
+    height: 2px;
+    background-color: grey;
+}
+
+.vector22{
+    margin-left: 30px;
+    display: block;
+    content: "";
+    width: 2px;
+    background-color: grey;
 }

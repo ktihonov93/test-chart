@@ -65,11 +65,14 @@ function App() {
       <Header title = {testVolume != null && testVolume.title}/>
 
       <div className="diffs">
-        <Difference diff = {firstDiff} />
-        <Difference diff = {secondDiff} />        
+        <Difference diff = {firstDiff} diff1 = {0} diff2 = {firstDiff} maxSum = {maxSum}/>
+        <Difference diff = {secondDiff}  diff1 = {firstDiff} diff2 = {firstDiff + secondDiff} maxSum = {maxSum}/>        
       </div>
      
+     <div className="GraphListInApp">
       <GraphList testVolume = {testVolume} maxSum = {maxSum} />
+     </div>
+      
 
       <div className="footers">
           <Footer line = "Клиентская часть" color="#4ab6e8" />

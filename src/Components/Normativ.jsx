@@ -5,7 +5,9 @@ function Normativ({ column, name, maxSum }){
 
     return (
         <div className="Normativ">
-            <div id="norm" style={{height: column*400/maxSum + "px"}}>{column}</div>
+            <div id="norm" style={{height: column*400/maxSum + "px"}}>
+                <div className="normNumber">{column}</div>
+            </div>
             <div className="graphName">{name}</div>
         </div>
     )
